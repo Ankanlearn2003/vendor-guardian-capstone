@@ -1,4 +1,4 @@
-# VendorGuardian AI: Asynchronous Contract Compliance & Invoice Auditor
+# 🛡️ VendorGuardian AI: Asynchronous Contract Compliance & Invoice Auditor
 
 ### Subtitle
 A Spec-Driven, Multi-Agent Architecture Powered by ADK 2.0 and Model Context Protocol (MCP) with Ephemeral Sandboxing and Zero-Trust Human-in-the-Loop Governance Nets.
@@ -14,7 +14,7 @@ VendorGuardian AI completely eliminates these failure vectors by shifting the ar
 
 ---
 
-## 2. Technical Solution Architecture & Data Trajectories
+## 🏛️ 2. Technical Solution Architecture & Data Trajectories
 VendorGuardian AI isolates operational capabilities into separate layers to enforce strict system boundaries:
 
 ```text
