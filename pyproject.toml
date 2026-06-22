@@ -1,0 +1,13 @@
+[project]
+name = "vendor-guardian-capstone"
+version = "1.0.0"
+description = "Event-Driven Multi-Agent Contract Compliance & Invoice Auditor"
+dependencies = [
+    "fastapi>=0.110.0",
+    "uvicorn>=0.28.0",
+    "streamlit>=1.32.0",
+    "pydantic>=2.6.0",
+    "google-genai>=0.1.0",
+    "mcp>=1.0.0",
+    "fastmcp>=0.1.0"
+]
