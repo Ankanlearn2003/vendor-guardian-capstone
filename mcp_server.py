@@ -1,10 +1,8 @@
 import os
 from mcp.server.fastmcp import FastMCP
 
-# Initialize the official FastMCP server
 mcp = FastMCP("Contract-Database")
 
-# Mock Enterprise Contract Database Repository
 MOCK_CONTRACT_REGISTRY = {
     "acme_corp": {
         "vendor_name": "Acme Industrial Logistics",
@@ -26,13 +24,7 @@ def verify_contract_terms(vendor_id: str) -> str:
         return f"[MATCH FOUND] Contract Parameters: {MOCK_CONTRACT_REGISTRY[vendor_id]}"
     return f"[ALERT] No negotiated master services agreement found for vendor ID: '{vendor_id}'."
 
-
-
-# ... (Keep all your existing FastMCP tool code exactly the same) ...
-
 if __name__ == "__main__":
-    # Render provides the port dynamically; default to 8000 for local testing
     port = int(os.environ.get("PORT", 8000))
     
-    # Force the server to listen globally on 0.0.0.0 so the internet can reach it
-    server.run(transport="sse", host="0.0.0.0", port=port)
+    mcp.run(transport="sse", host="0.0.0.0", port=port)
