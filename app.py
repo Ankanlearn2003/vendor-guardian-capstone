@@ -1,5 +1,6 @@
 import streamlit as st
 import json
+import os
 import asyncio
 from typing import Dict, Any, List
 from pydantic import BaseModel
@@ -22,14 +23,16 @@ class InvoiceState(BaseModel):
 # --- 2. ASYNC MCP CLIENT ---
 async def fetch_mcp_contract(vendor_id: str) -> str:
     """True MCP Client connecting via Server-Sent Events (SSE)."""
+    # Look for the live Render URL in cloud settings, fallback to local machine if blank
+    mcp_backend_url = os.getenv("MCP_SERVER_URL", "http://127.0.0.1:8000")
+    sse_endpoint = f"{mcp_backend_url.rstrip('/')}/sse"
+    
     try:
         async with AsyncExitStack() as stack:
-            # Connect to FastMCP SSE endpoint
-            transport = await stack.enter_async_context(sse_client("http://127.0.0.1:8000/sse"))
+            transport = await stack.enter_async_context(sse_client(sse_endpoint))
             session = await stack.enter_async_context(ClientSession(transport))
             await session.initialize()
             
-            # Call the tool natively through the MCP protocol
             result = await session.call_tool("verify_contract_terms", arguments={"vendor_id": vendor_id})
             return result.content[0].text
     except Exception as e:
