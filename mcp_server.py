@@ -61,6 +61,11 @@ async def handle_sse(request: Request):
 async def handle_messages(request: Request):
     await sse_transport.handle_post_request(request.scope, request.receive, request.send)
 
+@app.get("/")
+async def root_health_check():
+    """Returns a clean 200 OK status for cloud monitoring and cron pingers."""
+    return {"status": "healthy", "service": "VendorGuardian MCP Server Live"}
+
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 8000))
     uvicorn.run(app, host="0.0.0.0", port=port)
